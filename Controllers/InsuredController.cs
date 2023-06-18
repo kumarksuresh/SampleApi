@@ -30,5 +30,17 @@ namespace SampleApi.Controllers
             var filteredInsured = await _dbContext.Insureds.Where(f => f.LastName.Contains(lastNameQuery)).AsNoTracking().ToListAsync().ConfigureAwait(false);
             return Ok(filteredInsured);
         }
+
+        [HttpGet]
+        [Route("GetPolcies")]
+        public async Task<ActionResult<IEnumerable<PolicyInfo>>> GetPolicyList()
+        {   
+            var policies = _dbContext.PolicyInfos
+            .Include(i => i.Insured)
+            .Include(t => t.PolicyType)
+            .AsNoTracking()
+            .ToList();
+            return Ok(policies);
+        }
     }
 }

@@ -13,5 +13,5 @@ public partial class Insured
 
     public DateTime DateOfBirth { get; set; }
 
-    public virtual ICollection<PolicyInfo> PolicyInfos { get; set; } = new List<PolicyInfo>();
+    public Char Gender { get; set; }
 }

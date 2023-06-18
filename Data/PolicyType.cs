@@ -14,6 +14,4 @@ public partial class PolicyType
     public DateTime CreatedDate { get; set; }
 
     public DateTime? UpdatedDate { get; set; }
-
-    public virtual ICollection<PolicyInfo> PolicyInfos { get; set; } = new List<PolicyInfo>();
 }

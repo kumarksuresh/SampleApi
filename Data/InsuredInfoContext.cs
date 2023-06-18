@@ -41,16 +41,6 @@ public partial class InsuredInfoContext : DbContext
             entity.Property(e => e.PolicyNumber).HasMaxLength(20);
             entity.Property(e => e.PolicyStartDate).HasColumnType("date");
             entity.Property(e => e.PremiumAmount).HasColumnType("decimal(10, 2)");
-
-            entity.HasOne(d => d.Insured).WithMany(p => p.PolicyInfos)
-                .HasForeignKey(d => d.InsuredId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__PolicyInf__Insur__3C69FB99");
-
-            entity.HasOne(d => d.PolicyType).WithMany(p => p.PolicyInfos)
-                .HasForeignKey(d => d.PolicyTypeId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__PolicyInf__Polic__3D5E1FD2");
         });
 
         modelBuilder.Entity<PolicyType>(entity =>

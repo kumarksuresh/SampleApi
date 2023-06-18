@@ -12,6 +12,10 @@ builder.Services.AddDbContext<InsuredInfoContext>(optns => optns.UseSqlServer(bu
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(p => p.AddDefaultPolicy(optns => {
+    optns.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+}));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,6 +26,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 app.UseAuthorization();
 
